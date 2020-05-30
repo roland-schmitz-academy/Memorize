@@ -5,14 +5,14 @@
 
 import Foundation
 
-class MemoryGame<CardContent> {
+struct MemoryGame<CardContent> {
     var cards: [Card]
 
     func choose(card: Card) {
         print("card chosen -> \(card)")
     }
 
-    func shuffleCards() {
+    mutating func shuffleCards() {
         cards.shuffle()
         print("shuffled cards = \(cards)")
     }
