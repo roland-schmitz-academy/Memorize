@@ -5,9 +5,9 @@
 
 import Foundation
 
-class EmojiMemoryGame {
+class EmojiMemoryGame : ObservableObject {
     typealias Card = MemoryGame<String>.Card
-    private var model: MemoryGame<String> = createMemoryGame()
+    @Published private var model: MemoryGame<String> = createMemoryGame()
 
     private class func createMemoryGame() -> MemoryGame<String> {
         let emojis = ["😺", "🐭", "🙉"]
@@ -15,6 +15,10 @@ class EmojiMemoryGame {
     }
 
     // MARK: - Access to the model
+
+    func shuffleCards() {
+        model.shuffleCards()
+    }
 
     var cards: [Card] {
         model.cards

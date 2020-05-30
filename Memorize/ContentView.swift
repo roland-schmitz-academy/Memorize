@@ -9,19 +9,26 @@
 import SwiftUI
 
 struct ContentView: View {
-    let viewModel: EmojiMemoryGame
+    @ObservedObject var viewModel: EmojiMemoryGame
     var body: some View {
-        HStack {
-            ForEach(viewModel.cards) { card in
-                CardView(card: card)
-                .onTapGesture {
-                    self.viewModel.choose(card: card)
+        VStack {
+            HStack {
+                ForEach(viewModel.cards) { card in
+                    CardView(card: card)
+                        .onTapGesture {
+                            self.viewModel.choose(card: card)
+                        }
                 }
             }
+                .padding()
+                .foregroundColor(Color(.systemOrange))
+                .font(.largeTitle)
+
+            Button(action: { self.viewModel.shuffleCards() }) {
+                Text("Shuffle").padding().background(Color(.systemBlue)).foregroundColor(Color(.systemBackground)).cornerRadius(10).padding()
+            }
+
         }
-        .padding()
-        .foregroundColor(Color(.systemOrange))
-        .font(.largeTitle)
     }
 }
 
