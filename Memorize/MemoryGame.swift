@@ -12,6 +12,11 @@ class MemoryGame<CardContent> {
         print("card chosen -> \(card)")
     }
 
+    func shuffleCards() {
+        cards.shuffle()
+        print("shuffled cards = \(cards)")
+    }
+
     init(numberOfPairs: Int, cardContentFactory: (Int) -> CardContent) {
         cards = []
         for pairIndex in 0..<numberOfPairs {
@@ -19,6 +24,7 @@ class MemoryGame<CardContent> {
             cards.append(Card(id: pairIndex * 2, content: cardPairContent))
             cards.append(Card(id: pairIndex * 2 + 1, isFaceUp: true, content: cardPairContent))
         }
+        shuffleCards()
     }
 
     struct Card : Identifiable {
