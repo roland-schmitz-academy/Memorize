@@ -10,8 +10,8 @@ class EmojiMemoryGame : ObservableObject {
     @Published private var model: MemoryGame<String> = createMemoryGame()
 
     private class func createMemoryGame() -> MemoryGame<String> {
-        let emojis = ["😺", "🐭", "🙉"]
-        return MemoryGame(numberOfPairs: emojis.count) { pairIndex in emojis[pairIndex] }
+        let emojis = ["😺", "🐭", "🙉", "🦋", "🎃"]
+        return MemoryGame(numberOfPairs: Int.random(in: 2...emojis.count)) { pairIndex in emojis[pairIndex] }
     }
 
     // MARK: - Access to the model
