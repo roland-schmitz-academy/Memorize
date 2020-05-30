@@ -22,11 +22,11 @@ struct ContentView: View {
             }
                 .padding()
                 .foregroundColor(Color(.systemOrange))
-                .font(.largeTitle)
+                .font(self.viewModel.cards.count < 10 ? .largeTitle : .headline)
 
             Button(action: { self.viewModel.shuffleCards() }) {
-                Text("Shuffle").padding().background(Color(.systemBlue)).foregroundColor(Color(.systemBackground)).cornerRadius(10).padding()
-            }
+                Text("Shuffle").padding().background(Color(.systemBlue)).foregroundColor(Color(.systemBackground)).cornerRadius(10)
+            }.padding()
 
         }
     }
