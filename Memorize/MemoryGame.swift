@@ -10,13 +10,9 @@ struct MemoryGame<CardContent> {
 
     mutating func choose(card: Card) {
         print("card chosen -> \(card)")
-        if let index = index(of: card) {
+        if let index = cards.firstIndex(matching: card) {
             cards[index].isFaceUp.toggle()
         }
-    }
-
-    func index(of card: Card) -> Int? {
-        cards.firstIndex(where: { $0.id == card.id })
     }
 
     mutating func shuffleCards() {
