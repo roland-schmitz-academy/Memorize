@@ -23,7 +23,7 @@ struct EmojiMemoryGameView: View {
                 .padding()
                 .foregroundColor(Color(.systemOrange))
 
-            Button(action: { self.viewModel.shuffleCards() }) {
+            Button(action: { self.viewModel.shuffle() }) {
                 Text("Shuffle").padding().background(Color(.systemBlue)).foregroundColor(Color(.systemBackground)).cornerRadius(10)
             }.padding()
 

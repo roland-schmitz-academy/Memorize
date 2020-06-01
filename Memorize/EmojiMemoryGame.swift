@@ -16,7 +16,8 @@ class EmojiMemoryGame : ObservableObject {
 
     // MARK: - Access to the model
 
-    func shuffleCards() {
+    func shuffle() {
+        model.resetCards()
         model.shuffleCards()
     }
 
