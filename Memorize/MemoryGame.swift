@@ -18,7 +18,7 @@ struct MemoryGame<CardContent : Equatable> {
                 cards.firstIndex(matching: card)
             }
         if faceupCardIndices.count > 1 {
-            for index in 0..<cards.count {
+            for index in cards.indices {
                 cards[index].isFaceUp = false
             }
         }
@@ -40,7 +40,7 @@ struct MemoryGame<CardContent : Equatable> {
     }
 
     mutating func resetCards() {
-        for index in 0..<cards.count {
+        for index in cards.indices {
             cards[index].isFaceUp = false
             cards[index].isMatched = false
         }
