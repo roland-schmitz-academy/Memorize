@@ -10,12 +10,9 @@ struct MemoryGame<CardContent : Equatable> {
 
     mutating func choose(card: Card) {
         print("card chosen -> \(card)")
-        let faceupCardIndices = cards
-            .filter { card in
-                card.isFaceUp
-            }
-            .compactMap { card in
-                cards.firstIndex(matching: card)
+        let faceupCardIndices = cards.indices
+            .filter {
+                cards[$0].isFaceUp
             }
         if faceupCardIndices.count > 1 {
             for index in cards.indices {
