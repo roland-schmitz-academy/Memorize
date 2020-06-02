@@ -11,19 +11,26 @@ struct MemoryGame<CardContent : Equatable> {
     mutating func choose(card: Card) {
         print("card chosen -> \(card)")
         let faceupCardIndices = cards
-            .filter { card in card.isFaceUp && !card.isMatched }
-            .compactMap { card in cards.firstIndex(matching: card) }
-        if faceupCardIndices.count == 2 {
-            if cards[faceupCardIndices[0]].content == cards[faceupCardIndices[1]].content {
-                cards[faceupCardIndices[0]].isMatched = true
-                cards[faceupCardIndices[1]].isMatched = true
-            } else {
-                cards[faceupCardIndices[0]].isFaceUp = false
-                cards[faceupCardIndices[1]].isFaceUp = false
+            .filter { card in
+                card.isFaceUp
+            }
+            .compactMap { card in
+                cards.firstIndex(matching: card)
+            }
+        if faceupCardIndices.count > 1 {
+            for index in 0..<cards.count {
+                cards[index].isFaceUp = false
             }
         }
-        if let index = cards.firstIndex(matching: card) {
-            cards[index].isFaceUp.toggle()
+        if !card.isMatched, let cardIndex = cards.firstIndex(matching: card), !cards[cardIndex].isFaceUp {
+            cards[cardIndex].isFaceUp = true
+            if faceupCardIndices.count == 1 {
+                let otherCardIndex = faceupCardIndices[0]
+                if cards[faceupCardIndices[0]].content == cards[cardIndex].content {
+                    cards[cardIndex].isMatched = true
+                    cards[faceupCardIndices[0]].isMatched = true
+                }
+            }
         }
     }
 
