@@ -33,6 +33,10 @@ class EmojiMemoryGame : ObservableObject {
         model.cards
     }
 
+    var score: Int {
+        return model.score
+    }
+
     // MARK: - Intents
 
     func newGame() {
@@ -41,8 +45,8 @@ class EmojiMemoryGame : ObservableObject {
         self.model = EmojiMemoryGame.createMemoryGame(theme: theme)
     }
 
-    func shuffle() {
-        model.resetCards()
+    func repeatGame() {
+        model.resetGame()
         model.shuffleCards()
     }
 

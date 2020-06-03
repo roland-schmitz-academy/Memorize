@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 struct GridLayout {
     var itemCount: Int

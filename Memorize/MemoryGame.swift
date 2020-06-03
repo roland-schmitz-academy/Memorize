@@ -7,6 +7,7 @@ import Foundation
 
 struct MemoryGame<CardContent : Equatable> {
     var cards: [Card]
+    var score: Int = 0
 
     mutating func choose(card: Card) {
         print("card chosen -> \(card)")
@@ -16,17 +17,28 @@ struct MemoryGame<CardContent : Equatable> {
             }
         if faceupCardIndices.count > 1 {
             for index in cards.indices {
-                cards[index].isFaceUp = false
+                if cards[index].isFaceUp {
+                    cards[index].wasAlreadySeen = true
+                    cards[index].isFaceUp = false
+                }
             }
         }
         if !card.isMatched, let cardIndex = cards.firstIndex(matching: card), !cards[cardIndex].isFaceUp {
             cards[cardIndex].isFaceUp = true
             if faceupCardIndices.count == 1 {
-                let otherCardIndex = faceupCardIndices[0]
                 if cards[faceupCardIndices[0]].content == cards[cardIndex].content {
                     cards[cardIndex].isMatched = true
                     cards[faceupCardIndices[0]].isMatched = true
+                    score += 2
+                } else {
+                    if cards[cardIndex].wasAlreadySeen {
+                        score -= 1
+                    }
+                    if cards[faceupCardIndices[0]].wasAlreadySeen {
+                        score -= 1
+                    }
                 }
+
             }
         }
     }
@@ -36,10 +48,12 @@ struct MemoryGame<CardContent : Equatable> {
         print("shuffled cards = \(cards)")
     }
 
-    mutating func resetCards() {
+    mutating func resetGame() {
+        score = 0
         for index in cards.indices {
             cards[index].isFaceUp = false
             cards[index].isMatched = false
+            cards[index].wasAlreadySeen = false
         }
     }
 
@@ -58,6 +72,7 @@ struct MemoryGame<CardContent : Equatable> {
         var isFaceUp: Bool = false
         var isMatched: Bool = false
         var content: CardContent
+        var wasAlreadySeen: Bool = false
     }
 }
 
