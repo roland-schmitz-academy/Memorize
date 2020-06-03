@@ -12,6 +12,7 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     var body: some View {
         VStack {
+            Text(viewModel.theme.name).font(.largeTitle).foregroundColor(Color(viewModel.theme.color)).padding()
             Grid(viewModel.cards) { card in
                 CardView(card: card)
                     .padding(5)
@@ -21,12 +22,16 @@ struct EmojiMemoryGameView: View {
                     }
             }
                 .padding()
-                .foregroundColor(Color(.systemOrange))
+                .foregroundColor(Color(viewModel.theme.color))
 
-            Button(action: { self.viewModel.shuffle() }) {
-                Text("Shuffle").padding().background(Color(.systemBlue)).foregroundColor(Color(.systemBackground)).cornerRadius(10)
-            }.padding()
-
+            HStack {
+                Button(action: { self.viewModel.newGame() }) {
+                    Text("New Game").padding().background(Color(.systemBlue)).foregroundColor(Color(.systemBackground)).cornerRadius(10)
+                }.padding()
+                Button(action: { self.viewModel.shuffle() }) {
+                    Text("Shuffle").padding().background(Color(.systemBlue)).foregroundColor(Color(.systemBackground)).cornerRadius(10)
+                }.padding()
+            }
         }
     }
 }

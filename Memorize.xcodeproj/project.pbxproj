@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35807160FD7C385E2F22304A /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35807D4DB60035719E96725C /* GridLayout.swift */; };
+		3580718D7527723A251D79F7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35807042175A659D1EF5DC40 /* Theme.swift */; };
 		35807273C5C3ED1BDB888D9A /* Array+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358075F4540454D17F44C2F3 /* Array+Identifiable.swift */; };
 		3580746C130EB97CDE9A4F4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 358079E84F89FB0D62923FFF /* AppDelegate.swift */; };
 		3580751504F152DF1FD2A6A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35807B2616110A848AD4A19B /* SceneDelegate.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		35807042175A659D1EF5DC40 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		3580708AD9E8604E8B8BAB02 /* EmojiMemoryGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGameView.swift; sourceTree = "<group>"; };
 		358070F14C83471098C6C227 /* MemoryGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 		358075F4540454D17F44C2F3 /* Array+Identifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Identifiable.swift"; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				358079D68908B6BE3D873F27 /* Grid.swift */,
 				358075F4540454D17F44C2F3 /* Array+Identifiable.swift */,
 				35807D4DB60035719E96725C /* GridLayout.swift */,
+				35807042175A659D1EF5DC40 /* Theme.swift */,
 			);
 			path = Memorize;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				358075A86F7A49AEA6F30424 /* Grid.swift in Sources */,
 				35807273C5C3ED1BDB888D9A /* Array+Identifiable.swift in Sources */,
 				35807160FD7C385E2F22304A /* GridLayout.swift in Sources */,
+				3580718D7527723A251D79F7 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
