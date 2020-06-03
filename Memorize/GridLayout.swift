@@ -9,16 +9,17 @@ import CoreGraphics
 struct GridLayout {
     var itemCount: Int
     var size: CGSize
-    var rowColumnRatio: Double
+    var columnRowRatio: Double
 
-    init(itemCount: Int, in size: CGSize, rowColumnRatio: Double = 1/1) {
+    init(itemCount: Int, in size: CGSize, itemAspectRatio: Double = 1/1) {
         self.itemCount = itemCount
         self.size = size
-        self.rowColumnRatio = rowColumnRatio
+        self.columnRowRatio = Double(size.width / size.height) / itemAspectRatio
     }
 
-    var rowCount: Int { Int(sqrt(Double(itemCount - 1) * rowColumnRatio )) + 1 }
-    var columnCount: Int { (itemCount - 1) / rowCount + 1 }
+    var estimatedRowCount: Int { Int(sqrt(Double(itemCount - 1) / columnRowRatio )) + 1 }
+    var columnCount: Int { (itemCount - 1) / estimatedRowCount + 1 }
+    var rowCount: Int { (itemCount - 1) / columnCount + 1 }
     var itemWidth: CGFloat { size.width / CGFloat(columnCount) }
     var itemHeight: CGFloat { size.height / CGFloat(rowCount) }
 
