@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import UIKit
+import SwiftUI
 
 struct Theme {
     let name: String
@@ -23,7 +23,7 @@ struct Theme {
 
 let themes: [Theme] = [
     Theme("Halloween", emojis: "💀🎃👻☠️", numberOfPairs: 4, color: .systemOrange),
-    Theme("Flags", emojis: "🇨🇮🇪🇺🇳🇱🇦🇺🇧🇷🇩🇪🇦🇹", numberOfPairs: 6, color: .systemIndigo),
+    Theme("Flags", emojis: "🇮🇹🇪🇺🇳🇱🇦🇺🇧🇷🇩🇪🇦🇹", numberOfPairs: 6, color: .systemIndigo),
     Theme("Animals", emojis: "🐨🐶🐷🐸🐹🐻🐼🐰🦊🐭😺🦋🙉🦎", numberOfPairs: 12, color: .systemGreen),
     Theme("Smileys", emojis: "😁😂😃😄😆😇😉😊😌😍😎😐😑😒😕🤔🤗😗🤥😳🙂🙁🙃🙄☺️☹️", color: .systemYellow),
     Theme("People", emojis: "👨‍🍳👨‍🎓👨‍🎤👨‍🎨👨‍🚀🤵👩‍🍳👩‍🏫👩‍💻👨🏻‍💻👩‍🎨👨‍🎨", numberOfPairs: 10, color: .systemPurple),
