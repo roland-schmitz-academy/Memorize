@@ -20,6 +20,7 @@
 		35807CE194BEDDEB0BE35B60 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 35807D7C663C2DE32077DEBB /* .gitignore */; };
 		35807EDCDF15431F4B10E4D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35807629702897291B906C70 /* Preview Assets.xcassets */; };
 		35807F938FE6B8C620FB7E10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35807B25F35C880C33786FCC /* Assets.xcassets */; };
+		F3F2389324C4AE5900EACFA2 /* Pie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F2389224C4AE5900EACFA2 /* Pie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		35807D4DB60035719E96725C /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		35807D7C663C2DE32077DEBB /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
 		35807FA2ADFEF895390293BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F3F2389224C4AE5900EACFA2 /* Pie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pie.swift; sourceTree = "<group>"; };
 		FCDC5CB12482F7BB008D1C1D /* Memorize.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Memorize.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 				358079E84F89FB0D62923FFF /* AppDelegate.swift */,
 				35807B2616110A848AD4A19B /* SceneDelegate.swift */,
 				3580708AD9E8604E8B8BAB02 /* EmojiMemoryGameView.swift */,
+				F3F2389224C4AE5900EACFA2 /* Pie.swift */,
 				35807E92838B4208B5DBE4E9 /* Preview Content */,
 				358070F14C83471098C6C227 /* MemoryGame.swift */,
 				35807C416A75D7B71A3EF318 /* EmojiMemoryGame.swift */,
@@ -164,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3F2389324C4AE5900EACFA2 /* Pie.swift in Sources */,
 				3580746C130EB97CDE9A4F4D /* AppDelegate.swift in Sources */,
 				3580751504F152DF1FD2A6A8 /* SceneDelegate.swift in Sources */,
 				35807BE1511EBD3BFA33D688 /* EmojiMemoryGameView.swift in Sources */,

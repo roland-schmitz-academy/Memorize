@@ -55,13 +55,18 @@ struct CardView : View {
     func front(of card: EmojiMemoryGame.Card) -> some View {
         RoundedRectangle(cornerRadius: cornerRadius).fill(Color(.secondarySystemBackground))
         RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+        Pie(startAngle: .degrees(-90), endAngle: .degrees(20))
+            .fill(LinearGradient(gradient: gradient, startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)))
+            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 5)
+            .opacity(0.4)
         Text(card.content)
     }
 
     @ViewBuilder
     func back(of card: EmojiMemoryGame.Card) -> some View {
         if !card.isMatched {
-            RoundedRectangle(cornerRadius: cornerRadius).fill(LinearGradient(gradient: gradient, startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)))
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(LinearGradient(gradient: gradient, startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)))
         }
     }
 
@@ -88,7 +93,9 @@ struct CardView : View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+        let game = EmojiMemoryGame()
+        game.choose(card: game.cards[0])
+        return EmojiMemoryGameView(viewModel: game)
     }
 }
 
