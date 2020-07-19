@@ -51,16 +51,26 @@ struct CardView : View {
         }
     }
 
+    @ViewBuilder
+    func front(of card: EmojiMemoryGame.Card) -> some View {
+        RoundedRectangle(cornerRadius: cornerRadius).fill(Color(.secondarySystemBackground))
+        RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+        Text(card.content)
+    }
+
+    @ViewBuilder
+    func back(of card: EmojiMemoryGame.Card) -> some View {
+        if !card.isMatched {
+            RoundedRectangle(cornerRadius: cornerRadius).fill(LinearGradient(gradient: gradient, startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)))
+        }
+    }
+
     private func body(for size: CGSize) -> some View {
         ZStack {
             if self.card.isFaceUp {
-                RoundedRectangle(cornerRadius: cornerRadius).fill(Color(.secondarySystemBackground))
-                RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
-                Text(self.card.content)
+                front(of: self.card)
             } else {
-                if !card.isMatched {
-                    RoundedRectangle(cornerRadius: cornerRadius).fill(LinearGradient(gradient: gradient, startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)))
-                }
+                back(of: self.card)
             }
         }.font(.system(size: fontSize(for: size)))
     }
