@@ -6,9 +6,9 @@
 import Foundation
 
 struct MemoryGame<CardContent : Equatable> {
-    var cards: [Card]
-    var score: Int = 0
-    var firstCardChosenTime: Date?
+    private(set) var cards: [Card]
+    private(set) var score: Int = 0
+    private var firstCardChosenTime: Date?
 
     mutating func choose(card: Card) {
         print("card chosen -> \(card)")
@@ -76,10 +76,10 @@ struct MemoryGame<CardContent : Equatable> {
     }
 
     struct Card : Identifiable {
-        var id: Int
+        let id: Int
+        let content: CardContent
         var isFaceUp: Bool = false
         var isMatched: Bool = false
-        var content: CardContent
         var wasAlreadySeen: Bool = false
     }
 }

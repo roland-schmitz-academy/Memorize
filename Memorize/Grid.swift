@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct Grid<Item : Identifiable, ItemView : View>: View {
-    var items: [Item]
-    var viewForItem: (Item) -> ItemView
+    private var items: [Item]
+    private var viewForItem: (Item) -> ItemView
 
     init(_ items: [Item], viewForItem: @escaping (Item) -> ItemView) {
         self.items = items
@@ -23,7 +23,7 @@ struct Grid<Item : Identifiable, ItemView : View>: View {
         }
     }
 
-    func body(for layout: GridLayout) -> some View {
+    private func body(for layout: GridLayout) -> some View {
         return ForEach(items) { (item: Item) in
             self.body(for: item, in: layout)
         }

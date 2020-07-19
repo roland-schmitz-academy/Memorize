@@ -7,7 +7,7 @@ import Foundation
 
 class EmojiMemoryGame : ObservableObject {
     typealias Card = MemoryGame<String>.Card
-    @Published var theme: Theme
+    @Published private(set) var theme: Theme
     @Published private var model: MemoryGame<String>
 
     init() {

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct EmojiMemoryGameView: View {
-    @ObservedObject var viewModel: EmojiMemoryGame
+    @ObservedObject private(set) var viewModel: EmojiMemoryGame
     var body: some View {
         VStack(spacing: 0) {
             HStack {
@@ -42,8 +42,8 @@ struct EmojiMemoryGameView: View {
 }
 
 struct CardView : View {
-    var card: EmojiMemoryGame.Card
-    var gradient: Gradient
+    let card: EmojiMemoryGame.Card
+    let gradient: Gradient
 
     var body: some View {
         GeometryReader { geometry in
@@ -67,8 +67,8 @@ struct CardView : View {
 
     // MARK: - Card drawing constants
 
-    let cornerRadius: CGFloat = 10
-    let edgeLineWidth: CGFloat = 3
+    private let cornerRadius: CGFloat = 10
+    private let edgeLineWidth: CGFloat = 3
 
     private func fontSize(for size: CGSize) -> CGFloat {
         min(size.width, size.height) * 0.7
