@@ -44,6 +44,20 @@ struct EmojiMemoryGameView: View {
 struct CardView : View {
     let card: EmojiMemoryGame.Card
     let gradient: Gradient
+    
+    var frontGradient: LinearGradient {
+        LinearGradient(
+            gradient: gradient,
+            startPoint: .init(x: 0, y: 1),
+            endPoint: .init(x: 1, y: 0))
+    }
+
+    var backGradient: LinearGradient {
+        LinearGradient(
+            gradient: gradient,
+            startPoint: .init(x: 0, y: 0),
+            endPoint: .init(x: 1, y: 1))
+    }
 
     var body: some View {
         GeometryReader { geometry in
@@ -52,38 +66,19 @@ struct CardView : View {
     }
 
     @ViewBuilder
-    func front(of card: EmojiMemoryGame.Card) -> some View {
-        RoundedRectangle(cornerRadius: cornerRadius).fill(Color(.secondarySystemBackground))
-        RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
-        Pie(startAngle: .degrees(-90), endAngle: .degrees(20))
-            .fill(LinearGradient(gradient: gradient, startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)))
-            .padding(5)
-            .opacity(0.4)
-        Text(card.content)
-    }
-
-    @ViewBuilder
-    func back(of card: EmojiMemoryGame.Card) -> some View {
-        if !card.isMatched {
-            RoundedRectangle(cornerRadius: cornerRadius)
-                .fill(LinearGradient(gradient: gradient, startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)))
+    private func body(for size: CGSize) -> some View {
+        if card.isFaceUp || !card.isMatched {
+            ZStack {
+                Pie(startAngle: .degrees(-90), endAngle: .degrees(20))
+                    .fill(frontGradient)
+                    .padding(5)
+                    .opacity(0.4)
+                Text(card.content)
+                    .font(.system(size: fontSize(for: size)))
+            }
+            .cardify(isFaceUp: card.isFaceUp, backGradient: backGradient)
         }
     }
-
-    private func body(for size: CGSize) -> some View {
-        ZStack {
-            if self.card.isFaceUp {
-                front(of: self.card)
-            } else {
-                back(of: self.card)
-            }
-        }.font(.system(size: fontSize(for: size)))
-    }
-
-    // MARK: - Card drawing constants
-
-    private let cornerRadius: CGFloat = 10
-    private let edgeLineWidth: CGFloat = 3
 
     private func fontSize(for size: CGSize) -> CGFloat {
         min(size.width, size.height) * 0.7
