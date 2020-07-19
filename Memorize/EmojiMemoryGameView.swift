@@ -13,13 +13,13 @@ struct EmojiMemoryGameView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text(viewModel.theme.name).font(.title).foregroundColor(Color(viewModel.theme.color))
+                Text(viewModel.theme.name).font(.title).foregroundColor(viewModel.theme.color)
                 Spacer()
-                Text("Score: \(viewModel.score)").font(.title).foregroundColor(Color(viewModel.theme.color))
+                Text("Score: \(viewModel.score)").font(.title).foregroundColor(viewModel.theme.color)
             }.padding([.horizontal])
             Divider()
             Grid(viewModel.cards) { card in
-                CardView(card: card)
+                CardView(card: card, gradient: self.viewModel.theme.gradient)
                     .padding(5)
                     //.aspectRatio(2 / 3, contentMode: .fit)
                     .onTapGesture {
@@ -27,7 +27,7 @@ struct EmojiMemoryGameView: View {
                     }
             }
                 //.padding()
-                .foregroundColor(Color(viewModel.theme.color))
+                .foregroundColor(viewModel.theme.color)
             Divider()
             HStack {
                 Button(action: { self.viewModel.newGame() }) {
@@ -43,6 +43,7 @@ struct EmojiMemoryGameView: View {
 
 struct CardView : View {
     var card: EmojiMemoryGame.Card
+    var gradient: Gradient
 
     var body: some View {
         GeometryReader { geometry in
@@ -58,7 +59,7 @@ struct CardView : View {
                 Text(self.card.content)
             } else {
                 if !card.isMatched {
-                    RoundedRectangle(cornerRadius: cornerRadius).fill()
+                    RoundedRectangle(cornerRadius: cornerRadius).fill(LinearGradient(gradient: gradient, startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)))
                 }
             }
         }.font(.system(size: fontSize(for: size)))
@@ -80,3 +81,4 @@ struct ContentView_Previews: PreviewProvider {
         EmojiMemoryGameView(viewModel: EmojiMemoryGame())
     }
 }
+
