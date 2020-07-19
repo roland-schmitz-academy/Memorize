@@ -57,7 +57,7 @@ struct CardView : View {
         RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
         Pie(startAngle: .degrees(-90), endAngle: .degrees(20))
             .fill(LinearGradient(gradient: gradient, startPoint: .init(x: 0, y: 0), endPoint: .init(x: 1, y: 1)))
-            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, 5)
+            .padding(5)
             .opacity(0.4)
         Text(card.content)
     }
