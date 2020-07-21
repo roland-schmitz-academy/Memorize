@@ -59,9 +59,8 @@ struct MemoryGame<CardContent : Equatable> {
     mutating func resetGame() {
         score = 0
         for index in cards.indices {
-            cards[index].isFaceUp = false
-            cards[index].isMatched = false
-            cards[index].wasAlreadySeen = false
+            let card = cards[index]
+            cards[index] = Card(id: card.id, content: card.content)
         }
     }
 
@@ -78,6 +77,7 @@ struct MemoryGame<CardContent : Equatable> {
     struct Card : Identifiable {
         let id: Int
         let content: CardContent
+        
         var isFaceUp: Bool = false {
             didSet {
                 if isFaceUp {
