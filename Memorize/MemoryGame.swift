@@ -8,7 +8,6 @@ import Foundation
 struct MemoryGame<CardContent : Equatable> {
     private(set) var cards: [Card]
     private(set) var score: Int = 0
-    private var firstCardChosenTime: Date?
 
     mutating func choose(card: Card) {
         print("card chosen -> \(card)")
@@ -26,24 +25,17 @@ struct MemoryGame<CardContent : Equatable> {
         }
         if !card.isMatched, let cardIndex = cards.firstIndex(matching: card), !cards[cardIndex].isFaceUp {
             cards[cardIndex].isFaceUp = true
-            if faceupCardIndices.count != 1 {
-                // First card is selected -> remember time
-                firstCardChosenTime = Date()
-            }
             if faceupCardIndices.count == 1 {
-                // Second card is selected -> calculate score
-                let speedFactor = max(10 + Int(firstCardChosenTime!.timeIntervalSinceNow), 1)
-                
                 if cards[faceupCardIndices[0]].content == cards[cardIndex].content {
                     cards[cardIndex].isMatched = true
                     cards[faceupCardIndices[0]].isMatched = true
-                    score += 2 * speedFactor
+                    score += Int( 2 + (cards[cardIndex].bonusRemaining + cards[faceupCardIndices[0]].bonusRemaining) * 10.0 )
                 } else {
                     if cards[cardIndex].wasAlreadySeen {
-                        score -= 1 * speedFactor
+                        score -= 10
                     }
                     if cards[faceupCardIndices[0]].wasAlreadySeen {
-                        score -= 1 * speedFactor
+                        score -= 10
                     }
                 }
 
