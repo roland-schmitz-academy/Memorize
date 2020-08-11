@@ -13,13 +13,13 @@ struct EmojiMemoryGameView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text(viewModel.theme.name).font(.title).foregroundColor(viewModel.theme.color)
+                Text(viewModel.theme.name).font(.title).foregroundColor(color())
                 Spacer()
-                Text("Score: \(viewModel.score)").font(.title).foregroundColor(viewModel.theme.color)
+                Text("Score: \(viewModel.score)").font(.title).foregroundColor(color())
             }.padding([.horizontal])
             Divider()
             Grid(viewModel.cards) { card in
-                CardView(card: card, gradient: self.viewModel.theme.gradient)
+                CardView(card: card, gradient: gradient())
                     .padding(5)
                     //.aspectRatio(2 / 3, contentMode: .fit)
                     .onTapGesture {
@@ -29,7 +29,7 @@ struct EmojiMemoryGameView: View {
                     }
             }
                 //.padding()
-                .foregroundColor(viewModel.theme.color)
+            .foregroundColor(color())
             Divider()
             HStack {
                 Button(action: {
@@ -49,6 +49,24 @@ struct EmojiMemoryGameView: View {
             }
         }
     }
+    
+    
+    func color() -> Color {
+        if viewModel.theme.colors.count < 1 {
+            return Color(.orange)
+        } else {
+            return Color(viewModel.theme.colors[0])
+        }
+    }
+
+    func gradient() -> Gradient {
+        if viewModel.theme.colors.count < 2 {
+            return Gradient(colors: [color(), color()])
+        } else {
+            return Gradient(colors: viewModel.theme.colors.map { Color($0) })
+        }
+    }
+    
 }
 
 struct CardView : View {

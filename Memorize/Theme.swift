@@ -10,34 +10,24 @@ struct Theme {
     let name: String
     let emojis: [String]
     let numberOfPairs: Int/*?*/
-    let gradient: Gradient
-    var color: Color {
-        gradient.stops.first!.color
-    }
+    var colors: [UIColor]
 
-    init(_ name: String, emojis: String, numberOfPairs: Int/*? = nil*/, color: Color) {
+    init(_ name: String, emojis: String, numberOfPairs: Int/*? = nil*/, colors: UIColor...) {
         self.name = name
         self.emojis =  emojis.map { String($0) }
         print("emojis = \(emojis)")
         print("self.emojis = \(self.emojis)")
         self.numberOfPairs = numberOfPairs
-        self.gradient = Gradient(colors: [color, color])
-    }
-    init(_ name: String, emojis: String, numberOfPairs: Int/*? = nil*/, gradient: Gradient) {
-        self.name = name
-        self.emojis =  emojis.map { String($0) }
-        print("emojis = \(emojis)")
-        print("self.emojis = \(self.emojis)")
-        self.numberOfPairs = numberOfPairs
-        self.gradient = gradient
+        assert(colors.count > 0, "at least one color needed for Theme \(name)")
+        self.colors = colors
     }
 }
 
 let themes: [Theme] = [
-    Theme("Halloween", emojis: "💀🎃👻☠️", numberOfPairs: 4, gradient: Gradient(colors: [Color(.systemOrange), Color(.systemRed),Color(.systemOrange)])),
-    Theme("Flags", emojis: "🇮🇹🇪🇺🇳🇱🇦🇺🇧🇷🇩🇪🇦🇹", numberOfPairs: 6, gradient: Gradient(colors: [Color(.systemRed), Color(.systemGreen),Color(.systemBlue),Color(.systemYellow),Color(.systemOrange)])),
-    Theme("Animals", emojis: "🐨🐶🐷🐸🐹🐻🐼🐰🦊🐭😺🦋🙉🦎", numberOfPairs: 12, color: Color(.systemGreen)),
-    Theme("Smileys", emojis: "😁😂😃😄😆😇😉😊😌😍😎😐😑😒😕🤔🤗😗🤥😳🙂🙁🙃🙄☺️☹️", numberOfPairs: 7, color: Color(.systemYellow)),
-    Theme("People", emojis: "👨‍🍳👨‍🎓👨‍🎤👨‍🎨👨‍🚀🤵👩‍🍳👩‍🏫👩‍💻👨🏻‍💻👩‍🎨👨‍🎨", numberOfPairs: 10, color: Color(.systemPurple)),
-    Theme("Activity", emojis: "⚽️🎱🏀🏈⚾️🎾🏐🏉🥏", numberOfPairs: 8, color: Color(.systemRed)),
+    Theme("Halloween", emojis: "💀🎃👻☠️", numberOfPairs: 4, colors: .systemOrange, .systemRed, .systemOrange),
+    Theme("Flags", emojis: "🇮🇹🇪🇺🇳🇱🇦🇺🇧🇷🇩🇪🇦🇹", numberOfPairs: 6, colors: .systemRed, .systemGreen, .systemBlue, .systemYellow, .systemOrange),
+    Theme("Animals", emojis: "🐨🐶🐷🐸🐹🐻🐼🐰🦊🐭😺🦋🙉🦎", numberOfPairs: 12, colors: .systemGreen),
+    Theme("Smileys", emojis: "😁😂😃😄😆😇😉😊😌😍😎😐😑😒😕🤔🤗😗🤥😳🙂🙁🙃🙄☺️☹️", numberOfPairs: 7, colors: .systemYellow),
+    Theme("People", emojis: "👨‍🍳👨‍🎓👨‍🎤👨‍🎨👨‍🚀🤵👩‍🍳👩‍🏫👩‍💻👨🏻‍💻👩‍🎨👨‍🎨", numberOfPairs: 10, colors: .systemPurple),
+    Theme("Activity", emojis: "⚽️🎱🏀🏈⚾️🎾🏐🏉🥏", numberOfPairs: 8, colors: .systemRed),
 ]
