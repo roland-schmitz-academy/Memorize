@@ -17,9 +17,7 @@ class EmojiMemoryGame : ObservableObject {
     }
 
     private class func createMemoryGame(theme: Theme) -> MemoryGame<String> {
-        
-        print("createMemoryGame(theme: \(theme.jsonString))")
-        
+        print("createMemoryGame(theme: \(theme.prettyJsonString())")
         let emojis = theme.emojis.shuffled()
         let pairCount = theme.numberOfPairs /*?? Int.random(in: 2...emojis.count)*/
         return MemoryGame(numberOfPairs: pairCount) { pairIndex in emojis[pairIndex] }

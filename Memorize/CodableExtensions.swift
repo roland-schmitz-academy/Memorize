@@ -9,11 +9,22 @@
 import Foundation
 
 extension Encodable {
-    var jsonData: Data? {
-        try? JSONEncoder().encode(self)
+    func jsonData(with encoder: JSONEncoder = JSONEncoder()) -> Data? {
+        try? encoder.encode(self)
     }
     
-    var jsonString: String {
-        jsonData.asString()
+    func jsonString(with encoder: JSONEncoder = JSONEncoder()) -> String {
+        jsonData(with: encoder).asString()
+    }
+
+    func prettyJsonString() -> String {
+        jsonString(with: PrettyJSONEncoder())
+    }
+}
+
+open class PrettyJSONEncoder : JSONEncoder {
+    public override init() {
+        super.init()
+        outputFormatting = .prettyPrinted
     }
 }
