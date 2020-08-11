@@ -45,7 +45,6 @@ struct MemoryGame<CardContent : Equatable> {
 
     mutating func shuffleCards() {
         cards.shuffle()
-        print("shuffled cards = \(cards)")
     }
 
     mutating func resetGame() {
